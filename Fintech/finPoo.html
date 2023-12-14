@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="finStyle.css">   
+    <title>Ada_Bank</title>
+</head>
+<body>
+    <header>    
+        <img src="Sem nome (300 x 250 px).png" alt="">
+        <h1>Ada_Bank </h1> 
+        <ul><a href="criandoConta.html">Criar Conta</a></ul> 
+        <div class="loginSenha">
+            <label for="usuario">Usúario:</label>
+            <input type="text" id="usuario" required><br><br>
+            
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" required><br><br>
+            
+            <button onclick="entrar()">Entrar</button>
+            <div id="resultadoLogin"></div>
+        </div>    
+    </header>
+
+    <div class="container"> 
+        <div>
+            <label for="tipoConta">Escolha o tipo de conta:</label>
+            <select id="tipoConta">
+                <option value="poupanca">Conta Poupança</option>
+                <option value="corrente">Conta Corrente</option>
+            </select> <br><br>
+            
+            
+            <label for="valorDeposito">Valor para depósito:</label>
+            <input type="number" id="valorDeposito">
+            <button onclick="realizarDeposito()">Depositar</button> 
+            <button onclick="limparHistorico()">Limpar Histórico</button> <br><br>
+            
+            <div>
+                <label for="valorSaque">Valor para saque:</label>
+                <input type="number" id="valorSaque">
+                <button onclick="realizarSaque()">Sacar</button>   
+            </div>
+            
+            <label for="valorTransferencia">Valor da Transferência:</label>
+            <input type="number" id="valorTransferencia" required><br>
+            <label for="tipoContaDestino">Tipo de Conta Destino:</label>
+            <select id="tipoContaDestino">
+                <option value="poupanca">Poupança</option>
+                <option value="corrente">Corrente</option>
+            </select>
+            <button onclick="transferirPoupancaParaCorrente()">Transferir da Poupança para a Corrente</button>       
+            
+        </div>
+        
+        <div id="resultadoTransferencia"></div> 
+        <div id="resultadoDeposito"></div>
+        <div id="resultadoSaque"></div>
+        <div id="resultadoTransferencia"></div>
+        <script src="finPOO.js"></script>       
+    </div>
+</body>
+</html>
