@@ -57,6 +57,7 @@ function entrar() {
     } else {
         document.getElementById('resultadoLogin').innerText = 'Usuário ou senha inválidos.';
     }
+    return false;
 }
 
 function criarCliente() {
@@ -70,7 +71,7 @@ function criarCliente() {
     if (nome !== '' && cpf !== '' && telefone !== '' && email !== '' && usuario !== '' && senha !== '') {
         const cliente = {
             usuario: usuario,
-            senha: senha
+            senha: senha,           
         };
         localStorage.setItem('cliente', JSON.stringify(cliente));
         
@@ -88,8 +89,8 @@ function exibirDadosCliente() {
         const dadosCliente = document.getElementById('dadosCliente');
         dadosCliente.innerHTML = `
         <p><strong>Usuário:</strong> ${clienteSalvo.usuario}</p>
-        <p><strong>Senha:</strong> ${clienteSalvo.senha}</p>
-    `;
+        <p><strong>Senha:</strong> ${clienteSalvo.senha}</p>        
+        `;      
     }
 }
 

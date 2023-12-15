@@ -11,6 +11,7 @@
         <img src="Sem nome (300 x 250 px).png" alt="">
         <h1>Ada_Bank </h1> 
         <ul><a href="criandoConta.html">Criar Conta</a></ul> 
+        <form onsubmit="return entrar()">
         <div class="loginSenha">
             <label for="usuario">Usúario:</label>
             <input type="text" id="usuario" required><br><br>
@@ -18,9 +19,10 @@
             <label for="senha">Senha:</label>
             <input type="password" id="senha" required><br><br>
             
-            <button onclick="entrar()">Entrar</button>
-            <div id="resultadoLogin"></div>
-        </div>    
+            <button type="subimi">Entrar</button>
+        </div>   
+        <div id="resultadoLogin" class="login-senha"></div>
+    </form> 
     </header>
 
     <div class="container"> 
@@ -41,16 +43,16 @@
                 <label for="valorSaque">Valor para saque:</label>
                 <input type="number" id="valorSaque">
                 <button onclick="realizarSaque()">Sacar</button>   
-            </div>
+            </div><br>
             
             <label for="valorTransferencia">Valor da Transferência:</label>
-            <input type="number" id="valorTransferencia" required><br>
+            <input type="number" id="valorTransferencia" required><br><br>
             <label for="tipoContaDestino">Tipo de Conta Destino:</label>
             <select id="tipoContaDestino">
                 <option value="poupanca">Poupança</option>
                 <option value="corrente">Corrente</option>
             </select>
-            <button onclick="transferirPoupancaParaCorrente()">Transferir da Poupança para a Corrente</button>       
+            <button onclick="transferirPoupancaParaCorrente()">Transferir</button>       
             
         </div>
         
