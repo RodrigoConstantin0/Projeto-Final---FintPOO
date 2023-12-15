@@ -132,22 +132,46 @@ function transferirPoupancaParaCorrente() {
         document.getElementById('resultadoTransferencia').innerText = 'Insira um valor numérico válido para a transferência.';
         return;
     }
-    if (tipoContaDestino === 'corrente'){
+
+    let saldoDisponivel = 0;
+
+    if (tipoContaDestino === 'poupanca') {
+        saldoDisponivel = contaPoupanca.saldo;
+    } else if (tipoContaDestino === 'corrente') {
+        saldoDisponivel = contaCorrente.saldo;
+    }
+    
+    if (saldoDisponivel < valorTransferencia){
+        document.getElementById('resultadoTransferencia').innerText = `Saldo insuficiente para realizar a transferência para a conta ${tipoContaDestino}`;
+        return;
+    }
+
+    if (tipoContaDestino === 'poupanca') {
+        const depositoPoupanca = contaPoupanca.depositar(valorTransferencia);
+        if (depositoPoupanca) {
+            document.getElementById('resultadoTransferencia').innerText = `Transferência da conta corrente para a poupança no valor de ${valorTransferencia} realizado com sucesso. Novo saldo na conta poupança: ${depositoPoupanca}`;
+        } else {
+            document.getElementById('resultadoTransferencia').innerText = `Não foi possível realizar a transferência para a conta poupança.`;
+        }
+    } else if (tipoContaDestino === 'corrente') {
         const saquePoupanca = contaPoupanca.sacar(valorTransferencia);
-        if (saquePoupanca === "Saldo Insuficiente"){
+        if (saquePoupanca === "Saldo Insuficiente") {
             document.getElementById('resultadoTransferencia').innerText = `Não há saldo suficiente na conta poupança para transferir.`;
             return;
         }
+
         const depositoCorrente = contaCorrente.depositar(valorTransferencia);
-        if (depositoCorrente){
-            document.getElementById('resultadoTransferencia').innerText = `Transferência da poupança para a conta corrente no valor de ${valorTransferencia} realizado com sucesso. Novo saldo na conta corrente: ${depositoCorrente}`;             
-        }else {
-            document.getElementById('resultadoTransferencia').innerText = `não foi possivel realizar a transferência para a conta corrente.`;
+
+        if (depositoCorrente) {
+            document.getElementById('resultadoTransferencia').innerText = `Transferência da poupança para a conta corrente no valor de ${valorTransferencia} realizado com sucesso. Novo saldo na conta corrente: ${depositoCorrente}`;
+        } else {
+            document.getElementById('resultadoTransferencia').innerText = `Não foi possível realizar a transferência para a conta corrente.`;
         }
-    }else {
-        document.getElementById('resultadoTransferencia').innerText = `Não é possivel transferir para a conta ${tipoContaDestino}.`;
+    } else {
+        document.getElementById('resultadoTransferencia').innerText = `Não é possível transferir para a conta ${tipoContaDestino}.`;
     }
 }
+
 
 function realizarSaque() {
     const valorSaque = parseFloat(document.getElementById('valorSaque').value.trim());
